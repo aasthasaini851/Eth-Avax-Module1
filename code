@@ -6,56 +6,31 @@ contract Aastha {
     bool public rainy = true;
     bool public raincoat = true;
     uint256 public finalCall = 1;
-    uint256 public rainCount = 1;
-
-    // Event to notify weather status
-    event WeatherChecked(bool rainy);
+   
     // Event to notify raincoat status
     event RaincoatStatus(bool raincoat);
-    // Event to notify weather change
-    event WeatherChanged(bool newStatus);
-    // Event to notify rain count
-    event RainCountUpdated(uint256 rainCount);
-
-    // Function that uses require statement
+   
     function weather() public {
         require(rainy, "IT IS NOT RAINY TODAY!!");
         finalCall += 1;
 
         // Function that uses assert statement
         assert(finalCall != 0);
-
-        // Increment rain count if it's rainy
-        rainCount += 1;
-        emit RainCountUpdated(rainCount);
-
-        // Emit weather checked event
-        emit WeatherChecked(rainy);
     }
 
-    // Function to change the weather state
-    function weatherChanger() public {
-        rainy = !rainy;
-        emit WeatherChanged(rainy);
-    }
 
     // Function to get the final call value
     function getFinalCall() public view returns (uint256) {
         return finalCall;
     }
 
-    // Function that uses revert statement
     function wearRaincoat() public {
         if (rainy) {
-            raincoat = false; // previous state of rain = true now changed to false due to weather change
+            raincoat = true; 
             emit RaincoatStatus(raincoat);
         } else {
-            revert(" Raincoat needed");
+            revert(" No Raincoat needed");
         }
     }
 
-    // Function to get the rain count
-    function getRainCount() public view returns (uint256) {
-        return rainCount;
-    }
 }
