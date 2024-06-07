@@ -47,10 +47,10 @@ contract Aastha {
     // Function that uses revert statement
     function wearRaincoat() public {
         if (rainy) {
-            raincoat = true;
+            raincoat = false; // previous state of rain = true now changed to false due to weather change
             emit RaincoatStatus(raincoat);
         } else {
-            revert("No raincoat needed");
+            revert(" Raincoat needed");
         }
     }
 
