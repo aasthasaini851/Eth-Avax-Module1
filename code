@@ -1,17 +1,16 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 
-
 contract Aastha {
-    bool public rainy = true;
-    bool public raincoat = true;
+    bool public tankFull = true;
+    bool public waterSupply = false;
     uint256 public finalCall = 1;
    
-    // Event to notify raincoat status
-    event RaincoatStatus(bool raincoat);
+    // Event to notify water supply status
+    event WaterSupplyStatus(bool waterSupply);
    
-    function weather() public {
-        require(rainy, "IT IS NOT RAINY TODAY!!");
+    function ifAlreadyFull() public {
+        require(tankFull, "No need of water!!");
         finalCall += 1;
 
         // Function that uses assert statement
@@ -24,13 +23,12 @@ contract Aastha {
         return finalCall;
     }
 
-    function wearRaincoat() public {
-        if (rainy) {
-            raincoat = true; 
-            emit RaincoatStatus(raincoat);
+    function stopWaterSupply() public {
+        if (tankFull) {
+            waterSupply = false; 
+            emit WaterSupplyStatus(waterSupply);
         } else {
-            revert(" No Raincoat needed");
+            revert(" Let the water in");
         }
     }
-
 }
